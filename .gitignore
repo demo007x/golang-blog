@@ -1,0 +1,4 @@
+.idea
+go.sum
+.env
+/static/node_modules
