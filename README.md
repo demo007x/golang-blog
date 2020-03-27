@@ -1,4 +1,5 @@
-## **blog**
+## **golang blog**
+> golang 快速构建自己的博客。基于gin， gorm实现。
 ### **已完成的功能**
 - [√] markdown 富文本编辑器
 - [√] 自动生成目录
