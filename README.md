@@ -36,6 +36,8 @@ golang blog 基于`gin`，`gorm`实现。你可以快速构建自己的博客程
     Name = go_blog   // 数据库名
     TablePrefix =    // 数据库前缀
     ```
+- 导入数据库sql文件 `sql\sql.sql`
+
 ### 启动项目
 
 - `go run main.go`

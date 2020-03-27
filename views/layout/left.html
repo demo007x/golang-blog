@@ -5,16 +5,13 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div id="navigation" class="collapse navbar-collapse flex-column" >
-{{/*                {{template "layout/userinfo"}}*/}}
                 <div class="profile-section pt-3 pt-lg-0">
                     {{if eq .Name ""}}
                     {{$avatar := "/static/golang_icon.svg"}}
                         <img class="profile-image mb-3  mx-auto" src="{{$avatar}}" alt="avatar" style="width: 150px;">
-                        <div class="bio mb-3 font-weight-bold">菜鸟驿站 - 一个技术提升的网站！</div>
+                        <div class="bio mb-3 font-weight-bold">golang blog 快速构建自己的博客。</div>
                         <p class="m-3 text-center" style="color: #FECB85; font-weight: 600">
-                            侠之小者，汲日月之精华
-                            <br>
-                            侠之大者，济天下之菜鸟
+                            golang blog 基于gin，gorm实现。你可以快速构建自己的博客程序。前端使用Bootstrap4构建的模板文件（也可以自己构建模板）。
                         </p>
                     {{else}}
                         {{$avatar := .Avatar}}
