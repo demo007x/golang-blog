@@ -35,7 +35,12 @@ golang blog 基于`gin`，`gorm`实现。你可以快速构建自己的博客程
     Host = 127.0.0.1:3306 // 数据库链接地址
     Name = go_blog   // 数据库名
     TablePrefix =    // 数据库前缀
-    ``` 
+    ```
+### 启动项目
+
+- `go run main.go`
+- `go build -o filename` && `./filename`
+    
 ### **已完成的功能**
 - [√] markdown 富文本编辑器
 - [√] 自动生成目录
