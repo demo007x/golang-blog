@@ -1,0 +1,32 @@
+{{define "layout/footer"}}
+<div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true" style="position: fixed;top: 50px; right: 50px;width: 100%;">
+    <div class="toast-header bg-primary text-white" style="height: 40px; line-height: 40px;">
+        <img src="/static/golang_icon.svg" class="rounded mr-2" alt="..." style="width: 16px; height: 16px;">
+        <strong class="text-white">提醒</strong>
+        <button type="button" class="ml-2 mb-1 close text-right text-white" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="toast-body">
+        您好! 这是一个Toasts弹出提示框.
+    </div>
+</div>
+</body>
+<!-- Javascript -->
+<script src="/static/plugins/jquery-3.3.1.min.js"></script>
+<script src="/static/plugins/popper.min.js"></script>
+<script src="/static/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
+<script src="/static/js/demo/style-switcher.js"></script>
+<script src="/static/js/blog.js"></script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?93608629967edf6e527e70b709dedbeb";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</html>
+{{end}}

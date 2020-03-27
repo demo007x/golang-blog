@@ -1,0 +1,25 @@
+{{define "tagIndex"}}
+    {{template "layout/header"}}
+    {{template "layout/left" .Auth}}
+    <div class="main-wrapper">
+        {{template "layout/breadcrumb"}}
+        <section class="blog-list px-3 py-5 p-md-5">
+            <div class="container">
+                {{range .Tags}}
+                    {{if eq .UseNum 20 }}
+                <h1 class="d-inline m-3"><a href="/tags/{{.Name}}" class="badge badge-primary" title="{{setLinkTitle .Name}}">{{.Name}} &nbsp;&nbsp;</a></h1>
+                    {{else if eq .UseNum 10}}
+                <h2 class="d-inline  m-3"><a href="/tags/{{.Name}}" class="badge badge-secondary" title="{{setLinkTitle .Name}}">{{.Name}} &nbsp;&nbsp; </a></h2>
+                    {{else if eq .UseNum 7}}
+                <h3 class="d-inline  m-3"><a href="/tags/{{.Name}}" class="badge badge-success" title="{{setLinkTitle .Name}}">{{.Name}} &nbsp;&nbsp; </a></h3>
+                    {{else if eq .UseNum 5}}
+                <h4 class="d-inline  m-3"><a href="/tags/{{.Name}}" class="badge badge-danger" title="{{setLinkTitle .Name}}">{{.Name}} &nbsp;&nbsp; </a></h4>
+                    {{else}}
+                <h5 class="d-inline  m-3"><a href="/tags/{{.Name}}" class="badge badge-warning" title="{{setLinkTitle .Name}}">{{.Name}} &nbsp;&nbsp; </a></h5>
+                    {{end}}
+                {{end}}
+            </div>
+        </section>
+    </div>
+    {{- template "layout/footer" -}}
+{{end}}

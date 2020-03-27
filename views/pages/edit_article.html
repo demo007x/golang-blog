@@ -1,0 +1,67 @@
+{{define "edit-article"}}
+    {{template "layout/header"}}
+    {{template "layout/left" .Auth}}
+    <link rel="stylesheet" href="/static/editor/css/editormd.min.css">
+    <div class="main-wrapper">
+        <section class="blog-list px-3 py-5 p-md-5">
+            <div class="p-3 shadow-lg">
+                <h2 class="text-center">发布文章</h2>
+                <form class="m-3" id="form-create-article">
+                    <input type="hidden" name="id" value="{{.Article.ID}}">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group mt-5">
+                                <label>文章标题</label>
+                                <input type="text" name="title" class="form-control" value="{{.Article.Title}}" placeholder="标题" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group mt-5">
+                                <label>文章标签</label>
+                                <input type="text" name="tags" class="form-control" placeholder="标签" required value="{{.Article.Tags}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label>文章内容</label>
+                        <div id="editor" >
+                                <textarea class="form-control d-none" name="content" rows="5">
+                                    {{.Article.ContentMd}}
+                                </textarea>
+                        </div>
+                    </div>
+                    <button class="btn btn-block btn-dark mt-5" type="submit">保存文章</button>
+                </form>
+            </div>
+            <div id="custom-toc-container" style="display: none"></div>
+        </section>
+    </div>
+    {{template "layout/footer"}}
+    <script src="/static/editor/editormd.min.js"></script>
+    <script>
+        var editor;
+        $(function() {
+            let editor_options = {
+                width  : "100%",
+                height : "640",
+                // autoHeight: true,
+                htmlDecode      : "style,script,iframe",
+                tex             : true,
+                taskList        : true,
+                flowChart       : true,
+                sequenceDiagram : true,
+                toolbarAutoFixed: true,
+                saveHTMLToTextarea: true,
+                watch:true,
+                syncScrolling : "single",
+                path   : "/static/editor/lib/",
+                emoji : false,
+                codeFold : true,
+                tocContainer : "#custom-toc-container",
+                tocDropdown   : false
+            };
+            editor = editormd("editor", editor_options);
+        });
+
+    </script>
+{{end}}

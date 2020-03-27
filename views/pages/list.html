@@ -1,0 +1,38 @@
+{{define "list"}}
+    {{template "layout/header"}}
+    {{template "layout/left" .Auth}}
+    <div class="main-wrapper">
+        <section class="blog-list px-3 py-5 p-md-5">
+            <div class="container">
+                {{range $index, $item := .Paginate.Data}}
+                    <div class="item shadow {{if gt $index 0 }}mt-4{{end}}">
+                        <div class="media p-4">
+                            <div class="media-body d-block">
+                                <h3 class="title mb-1"><a href="/detail/{{$item.ID}}" title="{{$item.Title}}">{{$item.Title}}</a></h3>
+                                <div class="meta mb-2 mt-2"><span class="date"><i class="fa fa-calendar">&nbsp;</i>{{.CreatedAt}}</span><span class="time"><i class="fa fa-eye"></i>&nbsp;{{.ViewNum}}</span><span class="comment"><a href="#comments">1 comment</a></span></div>
+                                <div class="intro">{{$item.Introduction}}...</div>
+                                <a class="more-link" href="/detail/{{$item.ID}}" title="{{$item.Title}}">Read more &rarr;</a>
+                            </div>
+                        </div>
+                        <div class="d-flex mt-2 p-3 border-top border-light">
+                            <div class="d-inline-block tags text-white w-75">
+                                {{$tags := tagString2Map $item.Tags}}
+                                {{range $i, $t := $tags}}
+                                    <span class="badge badge-info ml-2"><a href="/tag/{{$t}}" class="text-white" target="_blank" title="{{$t}}">{{$t}} &nbsp;</a></span>
+                                {{end}}
+                            </div>
+                            <div class="action d-inline-block text-right w-25">
+                                <a href="/article/edit/{{$item.ID}}" class="d-none d-sm-inline-block text-dark"><i class="fa fa-edit"> </i> 编辑</a>
+                                <a href="/article/delete/{{$item.ID}}"><i class="fa fa-trash pl-3 text-dark"> </i> 删除</a>
+                            </div>
+                        </div>
+                    </div>
+                {{end}}
+                {{with .Paginate}}
+                {{template "layout/pagination" .}}
+                {{end}}
+            </div>
+        </section>
+    </div>
+    {{template "layout/footer"}}
+{{end}}

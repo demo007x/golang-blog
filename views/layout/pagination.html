@@ -1,0 +1,38 @@
+{{define "layout/pagination"}}
+    {{if ne .TotalPage 1}}
+<nav aria-label="..." class="m-5">
+    <ul class="pagination pagination-lg justify-content-center">
+        {{if .ShowFirstPage}}
+        <li class="page-item">
+            <a class="page-link" href="{{.FirstPageUrl}}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+        </li>
+        {{end}}
+        {{range $index, $p := .PageLink}}
+            {{if eq $.CurrentPage $p.P}}
+                <li class="page-item active">
+                <span class="page-link">
+                    {{$p.P}}
+                    <span class="sr-only">(current)</span>
+                </span>
+                </li>
+            {{else}}
+                <li class="page-item">
+                    <a class="page-link" href="{{$p.Link}}">{{$p.P}}</a>
+                </li>
+            {{end}}
+        {{end}}
+        {{if .ShowLastPage}}
+        <li class="page-item">
+            <a class="page-link" href="{{.LastPageUrl}}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+        {{end}}
+    </ul>
+</nav>
+    {{end}}
+{{end}}
