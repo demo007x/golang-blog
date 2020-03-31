@@ -5,9 +5,10 @@ import (
 	"blog/modules"
 	"blog/services"
 	"blog/utils"
-	"github.com/jinzhu/gorm"
 	"net/http"
 	"strconv"
+
+	"github.com/jinzhu/gorm"
 
 	"github.com/gin-gonic/gin"
 )
@@ -67,7 +68,12 @@ func SaveArticle(c *gin.Context) {
 	auth := (&Auth{}).GetAuth(c)
 	// 计算文章简介
 	introduction := utils.Html2Str(data.EditorHtmlCode)
-	introduction = string(([]rune(introduction))[:100])
+
+	if len(introduction) > 100 {
+		introduction = string(([]rune(introduction))[:100])
+	} else {
+		introduction = string(([]rune(introduction))[:len(introduction)])
+	}
 
 	article := modules.Article{
 		Title:         data.Title,

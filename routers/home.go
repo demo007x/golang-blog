@@ -3,6 +3,7 @@ package routers
 import (
 	"blog/controllers"
 	"blog/middleware"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -29,7 +30,8 @@ func Home(r *gin.Engine) {
 		tag := home.Group("/tags")
 		{
 			tag.GET("/", controllers.TagIndex)
-			tag.GET("/:name", controllers.GetArticleByTagName)
+			tag.GET("/title/:name", controllers.GetArticleByTagName)
+			tag.GET("/ajax/list", controllers.AjaxTags)
 		}
 
 		home.GET("/archives", controllers.Archives)

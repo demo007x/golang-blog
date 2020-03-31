@@ -2,7 +2,7 @@
     {{template "layout/header"}}
     {{template "layout/left" .Auth}}
     <link rel="stylesheet" href="/static/editor/css/editormd.min.css">
-    <link rel="stylesheet" href="/static/plugins/tags-input/tagsinput.css">
+    <link rel="stylesheet" href="/static/plugins/tagsinput/tagsinput.css">
         <style>
             .bootstrap-tagsinput {
                 background-color: #fff;
@@ -37,7 +37,7 @@
                         <div class="col-sm-6">
                             <div class="form-group mt-5">
                                 <label>文章标签</label>
-                                <input type="text" name="tags" class="form-control" placeholder="标签" value="测试, demo" required id="tagsinput">
+                                <input type="text" name="tags" class="form-control" placeholder="标签" value="" required id="tagsinput">
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,8 @@
     {{template "layout/footer"}}
     <script src="/static/editor/editormd.min.js"></script>
     <script src="/static/js/demo/style-switcher.js"></script>
-    <script src="/static/plugins/tags-input/tagsinput.js"></script>
+    <script src="/static/plugins/typeahead/dist/typeahead.bundle.min.js"></script>
+    <script src="/static/plugins/tagsinput/tagsinput.js"></script>
     <script>
         $(function() {
             let editor_options = {
@@ -74,9 +75,30 @@
                 path   : "/static/editor/lib/",
             };
             var editor = editormd("editor", editor_options);
-        });
-        $('#tagsinput').tagsinput({
 
+            var tags = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: '/tags/ajax/list',
+                    filter: function(list) {
+                        return $.map(list, function(tag) {
+                           return {"name":tag.Name};
+                        });
+                    }
+                }
+            });
+            tags.initialize();
+            $('#tagsinput').tagsinput({
+                maxTags: 3,
+                trimValue: true,
+                typeaheadjs: {
+                    name: 'tags',
+                    displayKey: 'name',
+                    valueKey: 'name',
+                    source:tags.ttAdapter()
+                }
+            });
         });
     </script>
 {{end}}

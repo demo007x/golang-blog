@@ -13,6 +13,9 @@ $(document).ready(function() {
 			$(item).addClass('active').find("a").append("<span class=\"sr-only\">(current)</span>");
 		}
 	});
+	$("#handle-toc").click(function () {
+		$(".editormd-markdown-toc").toggle();
+	});
 	/**
 	 * show msg
 	 * @param type

@@ -4,13 +4,14 @@
     <link rel="stylesheet" href="/static/editor/css/editormd.min.css">
     <div class="main-wrapper">
         <article class="blog-post px-3 py-5 p-md-5">
-            <div class="d-none d-xl-block">
-                <div class="card position-fixed" style="width: 18rem;">
+            <div class="d-none d-lg-block position-fixed">
+                <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">文章目录</h5>
-                        <p class="card-text" id="custom-toc-container">
-                            {{.DirectoryHtml | html}}
-                        </p>
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="card-title">文章目录 </h5>
+                            <span id="handle-toc"><i class="fas fa-2x fa-angle-down"></i></span>
+                        </div>
+                        {{.DirectoryHtml | html}}
                     </div>
                 </div>
             </div>
