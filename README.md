@@ -2,6 +2,8 @@
 > golang 快速构建自己的博客。基于gin， gorm实现。
 
 <p class="center">
+<img src="https://gitee.com/golang-007/golang-blog/badge/star.svg?theme=dark">
+<img src="https://gitee.com/golang-007/golang-blog/badge/fork.svg?theme=dark">
 <img src="https://img.shields.io/github/issues/anziguoer/golang-blog" alt="GitHub issues badge">
 <img src="https://img.shields.io/github/forks/anziguoer/golang-blog" alt="GitHub forks badge">
 <img src="https://img.shields.io/github/stars/anziguoer/golang-blog" alt="GitHub stars badge">
@@ -23,3 +25,6 @@
 - https://github.com/gin-gonic/gin
 - https://gorm.io/zh_CN/
 - https://github.com/russross/blackfriday
+
+
+[![golang-007/golang-blog](https://gitee.com/golang-007/golang-blog/widgets/widget_card.svg?colors=4183c4,ffffff,ffffff,e3e9ed,666666,9b9b9b)](https://gitee.com/golang-007/golang-blog)
