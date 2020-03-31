@@ -2,7 +2,11 @@
 > golang 快速构建自己的博客。基于gin， gorm实现。
 
 <p class="center">
-<img alt="GitHub followers" src="https://img.shields.io/github/followers/anziguoer?label=golang-blog">
+<img src="https://img.shields.io/github/issues/anziguoer/golang-blog" alt="GitHub issues badge">
+<img src="https://img.shields.io/github/forks/anziguoer/golang-blog" alt="GitHub forks badge">
+<img src="https://img.shields.io/github/stars/anziguoer/golang-blog" alt="GitHub stars badge">
+<img src="https://img.shields.io/github/license/anziguoer/golang-blog" alt="GitHub license badge">
+<img src="https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2Fanziguoer%2Fgolang-blog" alt="Twitter badge">
 </p>
 
 ### **计划功能**

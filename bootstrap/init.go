@@ -32,7 +32,8 @@ func Init() *gin.Engine {
 		"html":          utils.Html,
 		"tagString2Map": utils.TagString2Map,
 		"setLinkTitle": utils.SetLinkTitle,
-		"appUrl": utils.AppUrl,
+		"appUrl": 	utils.AppUrl,
+		"socialHtml":	utils.SocialHtml,
 	})
 	// 设置模板解析路径
 	App.LoadHTMLGlob("./views/**/*")
