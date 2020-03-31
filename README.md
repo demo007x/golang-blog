@@ -5,16 +5,13 @@
 <img alt="GitHub followers" src="https://img.shields.io/github/followers/anziguoer?label=golang-blog">
 </p>
 
-
-### **已完成的功能**
+### **计划功能**
 - [√] markdown 富文本编辑器
 - [√] 自动生成目录
-
-### **计划功能**
 - [×] 标签功能优化
 - [×] markdown 文件转html文件
-- [×] 创建markdown文章,并发布文章
-- [×] 命令安装blog
+- [×] cmd创建markdown文章,并发布文章
+- [×] cmd安装blog
 - [×] 深色主题
 - [×] 优雅重启
 
