@@ -88,6 +88,7 @@ func SaveArticle(c *gin.Context) {
 	if data.Id == 0 {
 		// 保存数据
 		err = driver.Db.Create(&article).Error
+		go services.SetArticleArchive(&article)
 	} else {
 		article.ID = uint(data.Id)
 		// 修改数据
@@ -104,7 +105,7 @@ func SaveArticle(c *gin.Context) {
 		return
 	}
 	// 处理文章的tags
-	services.HandleTags(data.Tags)
+	go services.HandleTags(data.Tags)
 
 	response := utils.Response{
 		Status: 0,

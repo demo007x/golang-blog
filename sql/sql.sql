@@ -1,4 +1,4 @@
-
+-- 用户
 CREATE TABLE `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
@@ -13,8 +13,9 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `uix_users_email` (`email`),
   KEY `idx_users_deleted_at` (`deleted_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
+-- 文章
 CREATE TABLE `articles` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) COLLATE utf8mb4_bin NOT NULL DEFAULT '',
@@ -29,8 +30,9 @@ CREATE TABLE `articles` (
   `view_num` int(11) NOT NULL DEFAULT 0,
   `directory_html` text COLLATE utf8mb4_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
+-- 标签
 CREATE TABLE `tags` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(25) COLLATE utf8mb4_bin NOT NULL DEFAULT '',
@@ -39,4 +41,14 @@ CREATE TABLE `tags` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- 归档
+create table archives (
+    id int(10) primary key auto_increment,
+    archive_date varchar(25) not null comment '归档日期',
+    article_ids varchar(255) not null default '' comment '文章ids',
+    created_at timestamp not null default current_timestamp,
+    updated_at timestamp not null default current_timestamp,
+    deleted_at timestamp
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
