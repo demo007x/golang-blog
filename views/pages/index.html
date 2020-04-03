@@ -1,5 +1,5 @@
 {{define "index"}}
-    {{template "layout/header"}}
+    {{template "layout/header" .Header}}
     {{template "layout/left" .Auth}}
     <div class="main-wrapper">
         <section class="blog-list px-3 py-5 p-md-5">
@@ -16,7 +16,7 @@
                                 <i class="fa fa-tags"></i>
                                 {{$tags := tagString2Map $item.Tags}}
                                 {{range $i, $t := $tags}}
-                                    <span class="badge badge-info ml-2"><a href="/tags/{{$t}}" class="text-white" target="_blank" title="{{$t}}">{{$t}} &nbsp;</a></span>
+                                    <span class="badge badge-info ml-2"><a href="/tags/title/{{$t}}" class="text-white" target="_blank" title="{{$t}}">{{$t}} &nbsp;</a></span>
                                 {{end}}
                             </div>
                         </div>

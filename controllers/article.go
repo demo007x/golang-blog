@@ -104,7 +104,7 @@ func SaveArticle(c *gin.Context) {
 		c.JSON(http.StatusOK, response.FailedResponse())
 		return
 	}
-	// 处理文章的tags
+	// 处理文章的tags, 启动协程
 	go services.HandleTags(data.Tags)
 
 	response := utils.Response{
@@ -130,12 +130,15 @@ func Detail(c *gin.Context) {
 	driver.Db.Save(&article)
 
 	auth := Auth{}.GetAuth(c)
+	header := Header{Title: article.Title}
 	data := &struct {
-		modules.Article
+		Article modules.Article
 		Auth
+		Header
 	}{
 		article,
 		auth,
+		header,
 	}
 	c.HTML(http.StatusOK, "detail", data)
 }

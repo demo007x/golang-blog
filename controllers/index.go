@@ -3,8 +3,9 @@ package controllers
 import (
 	"blog/bootstrap/driver"
 	"blog/modules"
-	"github.com/gin-gonic/gin"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 // Index 项目首页
@@ -19,11 +20,13 @@ func Index(c *gin.Context) {
 	}
 
 	auth := Auth{}.GetAuth(c)
+	header := Header{Title: ""}
 	data := struct {
 		Paginate modules.Pagination
 		Auth
+		Header
 	}{
-		*paginate, auth,
+		*paginate, auth, header,
 	}
 
 	c.HTML(http.StatusOK, "index", data)
