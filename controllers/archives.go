@@ -16,7 +16,7 @@ import (
 func Archives(c *gin.Context) {
 	auth := Auth{}.GetAuth(c)
 	var archives []modules.Archive
-	err := driver.Db.Find(&archives).Error
+	err := driver.Db.Order("created_at desc").Find(&archives).Error
 	if err != nil {
 		log.Fatalln(err)
 	}
