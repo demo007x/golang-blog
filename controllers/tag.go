@@ -47,11 +47,13 @@ func GetArticleByTagName(c *gin.Context) {
 	}
 
 	auth := Auth{}.GetAuth(c)
+	header := Header{Title: "标签"}
 	data := struct {
 		Paginate modules.Pagination
 		Auth
+		Header
 	}{
-		*paginate, auth,
+		*paginate, auth, header,
 	}
 	c.HTML(http.StatusOK, "index", data)
 }

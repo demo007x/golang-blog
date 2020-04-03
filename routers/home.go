@@ -16,7 +16,7 @@ func Home(r *gin.Engine) {
 		article := home.Group("/article", middleware.Authorization)
 		{
 			// 创建文章
-			article.GET("/list", controllers.UserArticleList)
+			article.GET("/user", controllers.UserArticleList)
 			article.GET("/create", controllers.CreateArticle)
 			article.POST("/create", controllers.SaveArticle)
 			article.GET("/edit/:id", controllers.EditArticle)
