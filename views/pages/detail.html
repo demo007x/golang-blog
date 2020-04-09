@@ -1,75 +1,101 @@
 {{define "detail"}}
-    {{template "layout/header" .Header}}
-    {{template "layout/left" .Auth}}
-    <link rel="stylesheet" href="/static/editor/css/editormd.min.css">
-    <div class="main-wrapper">
-        {{with .Article}}
-        <article class="blog-post px-3 py-5 p-md-5">
-            <div class="d-none d-lg-block position-fixed">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="card-title">文章目录 </h5>
-                            <span id="handle-toc"><i class="fas fa-2x fa-angle-down"></i></span>
-                        </div>
-                        {{.DirectoryHtml | html}}
-                    </div>
-                </div>
+{{template "layout/header" .Header}}
+{{template "layout/left" .Auth}}
+<link rel="stylesheet" href="/static/editor/css/editormd.min.css">
+{{with .Article}}
+<div class="main-wrapper">
+    <article class="blog-post px-3 py-5 p-md-5">
+        <div class="container">
+            <header class="blog-post-header">
+                <h2 class="title mb-2">{{.Title}}</h2>
+                <div class="meta mb-3"><span class="date"><i class="fa fa-calendar">&nbsp;</i>{{.CreatedAt}}</span><span
+                        class="time"><i class="fa fa-eye"></i>&nbsp;{{.ViewNum}}</span><span class="comment"><a
+                            href="#">4 comments</a></span></div>
+            </header>
+            <div class="blog-post-body markdown-body editormd-preview-container editormd-html-preview" id="editor"
+                style="padding: 0px;">
+                {{- .ContentHtml | html -}}
             </div>
-            <div class="container">
-                <header class="blog-post-header">
-                    <h2 class="title mb-2">{{.Title}}</h2>
-                    <div class="meta mb-3"><span class="date"><i class="fa fa-calendar">&nbsp;</i>{{.CreatedAt}}</span><span class="time"><i class="fa fa-eye"></i>&nbsp;{{.ViewNum}}</span><span class="comment"><a href="#">4 comments</a></span></div>
-                </header>
-                <div class="blog-post-body markdown-body editormd-preview-container editormd-html-preview" id="editor" style="padding: 0px;">
-                    {{.ContentHtml | html}}
-                </div>
-                <nav class="blog-nav nav nav-justified my-5">
-                    <a class="nav-link-prev nav-item nav-link rounded-left" href="index.html">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
-                    <a class="nav-link-next nav-item nav-link rounded-right" href="blog-list.html">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
-                </nav>
+            <nav class="blog-nav nav nav-justified my-5">
+                <a class="nav-link-prev nav-item nav-link rounded-left" href="index.html">Previous<i
+                        class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+                <a class="nav-link-next nav-item nav-link rounded-right" href="blog-list.html">Next<i
+                        class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+            </nav>
 
-                <div class="blog-comments-section" id="comments">
-                    <div id="disqus_thread"></div>
-                    <script>
-                        /**
-                         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT
-                         *  THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR
-                         *  PLATFORM OR CMS.
-                         *
-                         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT:
-                         *  https://disqus.com/admin/universalcode/#configuration-variables
-                         */
-                        /*
-                        var disqus_config = function () {
-                            // Replace PAGE_URL with your page's canonical URL variable
-                            this.page.url = PAGE_URL;
+            <div class="blog-comments-section" id="comments">
+                <div id="disqus_thread"></div>
+                <script>
+                    /**
+                     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT
+                     *  THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR
+                     *  PLATFORM OR CMS.
+                     *
+                     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT:
+                     *  https://disqus.com/admin/universalcode/#configuration-variables
+                     */
+                    /*
+                    var disqus_config = function () {
+                        // Replace PAGE_URL with your page's canonical URL variable
+                        this.page.url = PAGE_URL;
 
-                            // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                            this.page.identifier = PAGE_IDENTIFIER;
-                        };
-                        */
+                        // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                        this.page.identifier = PAGE_IDENTIFIER;
+                    };
+                    */
 
-                        (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
-                            var d = document, s = d.createElement('script');
-                            // IMPORTANT: Replace 3wmthemes with your forum shortname!
-                            s.src = 'https://3wmthemes.disqus.com/embed.js';
-                            s.setAttribute('data-timestamp', +new Date());
-                            (d.head || d.body).appendChild(s);
-                        })();
-                    </script>
-                    <noscript>
-                        Please enable JavaScript to view the
-                        <a href="https://disqus.com/?ref_noscript" rel="nofollow">
-                            comments powered by Disqus.
-                        </a>
-                    </noscript>
-                </div>
+                    (function () {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+                        var d = document, s = d.createElement('script');
+                        // IMPORTANT: Replace 3wmthemes with your forum shortname!
+                        s.src = 'https://3wmthemes.disqus.com/embed.js';
+                        s.setAttribute('data-timestamp', +new Date());
+                        (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+                <noscript>
+                    Please enable JavaScript to view the
+                    <a href="https://disqus.com/?ref_noscript" rel="nofollow">
+                        comments powered by Disqus.
+                    </a>
+                </noscript>
             </div>
-        </article>
-        {{end}}
-        {{template "layout/section_footer"}}
+        </div>
+    </article>
+    {{template "layout/section_footer"}}
+    <div style="width: 100px;
+    right: 0px;
+    position: fixed;
+    top: 50px; z-index: 888; border: 1px solid #5469c9" id="directory">
+        <div style="text-align: center;height: 50px; line-height: 50px; background-color: #5469c9;color: #ffffff;">
+            <i class="fa fa-list"></i> ????
+        </div>
+        <div style="display:none; height: auto; background-color: #ffffff; list-style-type: decimal"
+            id="directory_content" class="text-truncate">
+            {{.DirectoryHtml | html}}
+        </div>
     </div>
-    {{template "layout/footer"}}
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+</div>
+{{end}}
+{{template "layout/footer"}}
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+<script>
+    $("#directory").on("click", function () {
+        let that = this;
+        if ($(this).css("width") == "100px") {
+            // $(this).css("width", "300px")
+            $(this).animate({ width: "250px" }, 300, "swing", function () {
+                $("#directory_content").show();
+            })
+        } else {
+            $("#directory_content").css("display", "none");
+            $(this).animate({ width: "100px" }, 300, "swing", function () { })
+        }
+    });
+    $("body").click(function () {
+        if ($("#directory").css("width") == "250px") {
+            $("#directory_content").css("display", "none");
+            $("#directory").animate({ width: "100px" }, 300, "swing")
+        }
+    });
+</script>
 {{end}}
