@@ -78,4 +78,17 @@ $(document).ready(function() {
 			window.location.href = "/detail/"+response.data.ID;
 		}, "json")
 	});
+
+	// 文档目录
+	let directory_content = $("#directory_content");
+	directory_content.find("a").on("click", function () {
+		event.stopPropagation();
+	});
+	$("#directory").on("click",function (event) {
+		event.stopPropagation();
+		directory_content.animate({width:"300px"}, 300, "swing", function () {});
+	});
+	$("body").click(function (event) {
+		$("#directory_content").animate({width:"0", display:"none"}, 300, "swing", function(){});
+	});
 });
