@@ -10056,6 +10056,10 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 900;
   box-shadow: 0 0.5rem 1rem 1rem rgba(0, 0, 0, 0.15) !important;
   color: #ffffff;
+  overflow-y: auto;
+}
+#directory_content ul {
+  padding-inline-start: 2rem;
 }
 #directory_content ul li {
   list-style: none;
