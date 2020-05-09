@@ -2,11 +2,12 @@ package modules
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
-	"github.com/jinzhu/gorm"
 	"math"
 	"net/url"
 	"strconv"
+
+	"github.com/gin-gonic/gin"
+	"github.com/jinzhu/gorm"
 )
 
 // Paginator 接口
@@ -124,7 +125,7 @@ func (pg *Pagination) Paginate(c *gin.Context, db gorm.DB, out interface{}) (*Pa
 		CurrentPage:   page,
 		ShowFirstPage: showFirstPage,
 		ShowLastPage:  showLastPage,
-		LastPageUrl:   getPaginateItemUrl(requestURl, total),
+		LastPageUrl:   getPaginateItemUrl(requestURl, totalPage),
 		FirstPageUrl:  getPaginateItemUrl(requestURl, 1),
 		Path:          "",
 		PageLink:      pageLink,
