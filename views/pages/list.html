@@ -18,7 +18,7 @@
                             <div class="d-inline-block tags text-white w-75">
                                 {{$tags := tagString2Map $item.Tags}}
                                 {{range $i, $t := $tags}}
-                                    <span class="badge badge-info ml-2"><a href="/tag/{{$t}}" class="text-white" target="_blank" title="{{$t}}">{{$t}} &nbsp;</a></span>
+                                    <span class="badge badge-info ml-2"><a href="/tags/title/{{$t}}" class="text-white" target="_blank" title="{{$t}}">{{$t}} &nbsp;</a></span>
                                 {{end}}
                             </div>
                             <div class="action d-inline-block text-right w-25">

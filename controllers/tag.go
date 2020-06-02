@@ -4,9 +4,8 @@ import (
 	"blog/bootstrap/driver"
 	"blog/modules"
 	"blog/utils"
-	"net/http"
-
 	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
 func TagIndex(c *gin.Context) {
@@ -47,19 +46,19 @@ func GetArticleByTagName(c *gin.Context) {
 	}
 
 	auth := Auth{}.GetAuth(c)
-	header := Header{Title: "标签"}
+	header := Header{Title:"标签"}
 	data := struct {
 		Paginate modules.Pagination
 		Auth
 		Header
 	}{
-		*paginate, auth, header,
+		*paginate, auth,header,
 	}
 	c.HTML(http.StatusOK, "index", data)
 }
 
 // GetTags 获取tags列表
-func AjaxTags(c *gin.Context) {
+func AjaxTags(c *gin.Context)  {
 	var tags []modules.Tag
 
 	err := driver.Db.Select("id, name").Find(&tags).Error

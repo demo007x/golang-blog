@@ -3,7 +3,6 @@ package routers
 import (
 	"blog/controllers"
 	"blog/middleware"
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -22,7 +21,12 @@ func Home(r *gin.Engine) {
 			article.GET("/edit/:id", controllers.EditArticle)
 			article.GET("/delete/:id", controllers.DelArticle)
 		}
-
+		// 个人中心
+		user := home.Group("/user", middleware.Authorization)
+		{
+			user.GET("/update_pwd", controllers.UpdatePwd)
+			user.POST("/update_pwd", controllers.DoUpdatePwd)
+		}
 		// 文章详情
 		home.GET("/detail/:id", controllers.Detail)
 

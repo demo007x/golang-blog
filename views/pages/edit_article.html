@@ -1,117 +1,114 @@
 {{define "edit-article"}}
-{{template "layout/header"}}
-{{template "layout/left" .Auth}}
-<link rel="stylesheet" href="/static/editor/css/editormd.min.css">
-<link rel="stylesheet" href="/static/plugins/tagsinput/tagsinput.css">
-<style>
-    .bootstrap-tagsinput {
-        background-color: #fff;
-        border: 1px solid #ccc;
-        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-        display: inline-block;
-        padding: 0px 5px;
-        color: #555;
-        vertical-align: middle;
-        border-radius: 4px;
-        width: 100%;
-        line-height: 2.75rem;
-        cursor: text;
-    }
-
-    .bootstrap-tagsinput .badge {
-        margin: 2px 2px;
-        padding: 5px 8px;
-    }
-</style>
-<div class="main-wrapper">
-    <section class="blog-list px-3 py-5 p-md-5">
-        <div class="p-3 shadow-lg">
-            <h2 class="text-center">发布文章</h2>
-            <form class="m-3" id="form-create-article">
-                <input type="hidden" name="id" value="{{.Article.ID}}">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group mt-5">
-                            <label>文章标题</label>
-                            <input type="text" name="title" class="form-control" value="{{.Article.Title}}"
-                                placeholder="标题" required>
+    {{template "layout/header"}}
+    {{template "layout/left" .Auth}}
+    <link rel="stylesheet" href="/static/editor/css/editormd.min.css">
+    <link rel="stylesheet" href="/static/plugins/tagsinput/tagsinput.css">
+    <style>
+        .bootstrap-tagsinput {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            display: inline-block;
+            padding: 0px 5px;
+            color: #555;
+            vertical-align: middle;
+            border-radius: 4px;
+            width: 100%;
+            line-height: 2.75rem;
+            cursor: text;
+        }
+        .bootstrap-tagsinput .badge {
+            margin: 2px 2px;
+            padding: 5px 8px;
+        }
+    </style>
+    <div class="main-wrapper">
+        <section class="blog-list px-3 py-5 p-md-5">
+            <div class="p-3 shadow-lg">
+                <h2 class="text-center">发布文章</h2>
+                <form class="m-3" id="form-create-article">
+                    <input type="hidden" name="id" value="{{.Article.ID}}">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group mt-5">
+                                <label>文章标题</label>
+                                <input type="text" name="title" class="form-control" value="{{.Article.Title}}" placeholder="标题" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group mt-5">
+                                <label>文章标签</label>
+                                <input type="text" name="tags" class="form-control" placeholder="标签" required value="{{.Article.Tags}}" id="tagsinput">
+                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group mt-5">
-                            <label>文章标签</label>
-                            <input type="text" name="tags" class="form-control" placeholder="标签" required
-                                value="{{.Article.Tags}}" id="tagsinput">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group mt-3">
-                    <label>文章内容</label>
-                    <div id="editor">
-                        <textarea class="form-control d-none" name="content" rows="5">
+                    <div class="form-group mt-3">
+                        <label>文章内容</label>
+                        <div id="editor" >
+                            <textarea class="form-control d-none" name="content" rows="5">
                                 {{- .Article.ContentMd -}}
                             </textarea>
+                        </div>
                     </div>
-                </div>
-                <button class="btn btn-block btn-dark mt-5" type="submit">保存文章</button>
-            </form>
-        </div>
-        <div id="custom-toc-container" style="display: none"></div>
-    </section>
-    {{template "layout/section_footer"}}
-</div>
-{{template "layout/footer"}}
-<script src="/static/editor/editormd.min.js"></script>
-<script src="/static/plugins/typeahead/dist/typeahead.bundle.min.js"></script>
-<script src="/static/plugins/tagsinput/tagsinput.js"></script>
-<script>
-    var editor;
-    $(function () {
-        let editor_options = {
-            width: "100%",
-            height: "640",
-            // autoHeight: true,
-            htmlDecode: "style,script,iframe",
-            tex: true,
-            taskList: true,
-            flowChart: true,
-            sequenceDiagram: true,
-            toolbarAutoFixed: true,
-            saveHTMLToTextarea: true,
-            watch: true,
-            syncScrolling: "single",
-            path: "/static/editor/lib/",
-            emoji: false,
-            codeFold: true,
-            tocContainer: "#custom-toc-container",
-            tocDropdown: false
-        };
-        editor = editormd("editor", editor_options);
+                    <button class="btn btn-block btn-dark mt-5" type="submit">保存文章</button>
+                </form>
+            </div>
+            <div id="custom-toc-container" style="display: none"></div>
+        </section>
+        {{template "layout/section_footer"}}
+    </div>
+    {{template "layout/footer"}}
+    <script src="/static/editor/editormd.min.js"></script>
+    <script src="/static/plugins/typeahead/dist/typeahead.bundle.min.js"></script>
+    <script src="/static/plugins/tagsinput/tagsinput.js"></script>
+    <script>
+        var editor;
+        $(function() {
+            let editor_options = {
+                width  : "100%",
+                height : "640",
+                // autoHeight: true,
+                htmlDecode      : "style,script,iframe",
+                tex             : true,
+                taskList        : true,
+                flowChart       : true,
+                sequenceDiagram : true,
+                toolbarAutoFixed: true,
+                saveHTMLToTextarea: true,
+                watch:true,
+                syncScrolling : "single",
+                path   : "/static/editor/lib/",
+                emoji : false,
+                codeFold : true,
+                tocContainer : "#custom-toc-container",
+                tocDropdown   : false
+            };
+            editor = editormd("editor", editor_options);
 
-        var tags = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            remote: {
-                url: '/tags/ajax/list',
-                filter: function (list) {
-                    return $.map(list, function (tag) {
-                        return { "name": tag.Name };
-                    });
+            var tags = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: '/tags/ajax/list',
+                    filter: function(list) {
+                        return $.map(list, function(tag) {
+                            return {"name":tag.Name};
+                        });
+                    }
                 }
-            }
+            });
+            tags.initialize();
+            $('#tagsinput').tagsinput({
+                maxTags: 3,
+                trimValue: true,
+                typeaheadjs: {
+                    name: 'tags',
+                    displayKey: 'name',
+                    valueKey: 'name',
+                    source:tags.ttAdapter()
+                }
+            });
         });
-        tags.initialize();
-        $('#tagsinput').tagsinput({
-            maxTags: 3,
-            trimValue: true,
-            typeaheadjs: {
-                name: 'tags',
-                displayKey: 'name',
-                valueKey: 'name',
-                source: tags.ttAdapter()
-            }
-        });
-    });
 
-</script>
+    </script>
 {{end}}

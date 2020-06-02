@@ -1,74 +1,78 @@
 {{define "layout/left"}}
-<header class="header text-center">
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
-            aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div id="navigation" class="collapse navbar-collapse flex-column">
-            <div class="profile-section pt-3 pt-lg-0">
-                {{if eq .Name ""}}
-                {{$avatar := "/static/golang_icon.svg"}}
-                <img class="profile-image mb-3  mx-auto" src="{{$avatar}}" alt="avatar" style="width: 150px;">
-                <div class="bio mb-3 font-weight-bold">golang blog 快速构建自己的博客。</div>
-                <p class="m-3 text-center" style="color: #FECB85; font-weight: 600">
-                    golang blog 基于gin，gorm实现。你可以快速构建自己的博客程序。前端使用Bootstrap4构建的模板文件（也可以自己构建模板）。
-                </p>
-                {{else}}
-                {{$avatar := .Avatar}}
-                <img class="profile-image mb-3 rounded-circle mx-auto" src="{{$avatar}}" alt="avatar">
-                <div class="bio mb-3 font-weight-bold">{{.Name}}</div>
-                <div class="m-3 text-center">
-                    {{.Profession}}
+    <header class="header text-center">
+        <nav class="navbar navbar-expand-lg navbar-dark" >
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navigation" class="collapse navbar-collapse flex-column" >
+{{/*                {{template "layout/userinfo"}}*/}}
+                <div class="profile-section pt-3 pt-lg-0">
+                    {{if ne .Id 0 }}
+                    {{$avatar := "/static/logoh.png"}}
+                        <img class="profile-image mb-3  mx-auto" src="{{$avatar}}" alt="avatar" style="width: 150px;">
+                        <div class="bio mb-3 font-weight-bold">菜鸟驿站 - 一个技术提升的网站！</div>
+                        <p class="m-3 text-center" style="color: #FECB85; font-weight: 600">
+                            侠之小者，汲日月之精华
+                            <br>
+                            侠之大者，济天下之菜鸟
+                        </p>
+                    {{else}}
+                        {{$avatar := .Avatar}}
+                        <img class="profile-image mb-3 rounded-circle mx-auto" src="{{$avatar}}" alt="avatar">
+                        <div class="bio mb-3 font-weight-bold">{{.Name}}</div>
+                        <div class="m-3 text-center">
+                            {{.Profession}}
+                        </div>
+                    {{end}}
+                    <ul class="social-list list-inline py-3 mx-auto">
+                        {{socialHtml|html}}
+                    </ul>
+                    <hr>
                 </div>
-                {{end}}
-                <ul class="social-list list-inline py-3 mx-auto">
-                    {{socialHtml|html}}
+                <ul class="navbar-nav flex-column text-left">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/"><i class="fa fa-home fa-fw mr-2"></i>首页<span class="sr-only">(current)</span></a>
+                    </li>
+                    {{if ne .Id 0 }}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user/update_pwd"><i class="fa fa-edit fa-fw mr-2"></i>修改密码</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/article/user"><i class="fa fa-tag fa-fw mr-2"></i>个人文章</a>
+                    </li>
+                    <li class="nav-item d-none d-sm-block">
+                        <a class="nav-link" href="/article/create"><i class="fa fa-edit fa-fw mr-2"></i>发布文章</a>
+                    </li>
+                    {{end}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tags"><i class="fa fa-bookmark fa-fw mr-2"></i>标签</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/archives"><i class="fa fa-bars fa-fw mr-2" aria-hidden="true"></i> 归档</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about"><i class="fa fa-user fa-fw mr-2"></i>关于</a>
+                    </li>
+                    {{if eq .Id 0 }}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login"><i class="fa fa-users fa-fw mr-2"></i>登录</a>
+                    </li>
+                    {{else}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout"><i class="fa fa-users fa-fw mr-2"></i>退出</a>
+                    </li>
+                    {{end}}
                 </ul>
-                <hr>
+                <form class="signup-form form-inline justify-content-center pt-3">
+                    <div class="form-group">
+{{/*                        <label class="sr-only" for="semail">Your email</label>*/}}
+                        <input type="email" id="semail" name="email" class="form-control mr-md-1 semail" placeholder="邮件">
+                    </div>
+                    <div class="form-group  pt-3">
+                        <button type="submit" class="btn btn-block btn-primary">订阅</button>
+                    </div>
+                </form>
             </div>
-            <ul class="navbar-nav flex-column text-left">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/"><i class="fa fa-home fa-fw mr-2"></i>首页<span
-                            class="sr-only">(current)</span></a>
-                </li>
-                {{if ne .Name ""}}
-                <li class="nav-item">
-                    <a class="nav-link" href="/article/user"><i class="fa fa-tag fa-fw mr-2"></i>个人文章</a>
-                </li>
-                <li class="nav-item d-none d-sm-block">
-                    <a class="nav-link" href="/article/create"><i class="fa fa-edit fa-fw mr-2"></i>发布文章</a>
-                </li>
-                {{end}}
-                <li class="nav-item">
-                    <a class="nav-link" href="/tags"><i class="fa fa-bookmark fa-fw mr-2"></i>标签</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/archives"><i class="fa fa-bars fa-fw mr-2" aria-hidden="true"></i> 归档</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/about"><i class="fa fa-user fa-fw mr-2"></i>关于</a>
-                </li>
-                {{if eq .Name "" }}
-                <li class="nav-item">
-                    <a class="nav-link" href="/login"><i class="fa fa-users fa-fw mr-2"></i>登录</a>
-                </li>
-                {{else}}
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout"><i class="fa fa-users fa-fw mr-2"></i>退出</a>
-                </li>
-                {{end}}
-            </ul>
-            <form class="signup-form form-inline justify-content-center pt-3">
-                <div class="form-group">
-                    {{/*                        <label class="sr-only" for="semail">Your email</label>*/}}
-                    <input type="email" id="semail" name="email" class="form-control mr-md-1 semail" placeholder="邮件">
-                </div>
-                <div class="form-group  pt-3">
-                    <button type="submit" class="btn btn-block btn-primary">订阅</button>
-                </div>
-            </form>
-        </div>
-    </nav>
-</header>
+        </nav>
+    </header>
 {{end}}

@@ -50,6 +50,7 @@
                     <button class="btn btn-block btn-dark mt-5" type="submit">保存文章</button>
                 </form>
             </div>
+            <div id="custom-toc-container" style="display: none"></div>
         </section>
         {{template "layout/section_footer"}}
     </div>
@@ -66,13 +67,18 @@
                 // autoHeight: true,
                 htmlDecode      : "style,script,iframe",
                 tex             : true,
-                emoji           : true,
                 taskList        : true,
                 flowChart       : true,
                 sequenceDiagram : true,
                 toolbarAutoFixed: true,
-                saveHTMLToTextarea : true,
+                saveHTMLToTextarea: true,
+                watch:true,
+                syncScrolling : "single",
                 path   : "/static/editor/lib/",
+                emoji : false,
+                codeFold : true,
+                tocContainer : "#custom-toc-container",
+                tocDropdown   : false
             };
             var editor = editormd("editor", editor_options);
 

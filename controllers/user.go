@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"github.com/gin-contrib/sessions"
 	_ "github.com/gin-contrib/sessions/cookie"
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -196,4 +197,59 @@ func Logout(c *gin.Context)  {
 	}
 	c.Redirect(http.StatusFound, "/")
 	return
+}
+
+// method : GET
+// 更新密码
+func UpdatePwd(c *gin.Context)  {
+	auth := Auth{}.GetAuth(c)
+	data := struct {
+		Auth
+		Title string
+	}{
+		auth,
+		"修改密码",
+	}
+	c.HTML(http.StatusOK, "update_pwd", data)
+}
+
+// 修改密码 POST
+func DoUpdatePwd(c *gin.Context)  {
+	auth := Auth{}.GetAuth(c)
+	password := c.PostForm("password")
+	re_password := c.PostForm("re_password")
+
+	if password != re_password {
+		response := utils.Response{
+			Status: 403,
+			Data:   nil,
+			Msg:    "密码不一致",
+		}
+		c.JSON(http.StatusOK, response.FailedResponse())
+		return
+	}
+	salt := utils.Salt()
+	user, err := modules.GetUserByID(auth.Id)
+	if err != nil {
+		log.Println(err)
+	}
+	user.Salt = salt
+	user.Password = utils.CryptUserPassword(password, salt)
+	err = user.Update()
+	if err != nil {
+		response := utils.Response{
+			Status: 400,
+			Data:   nil,
+			Msg:    err.Error(),
+		}
+		c.JSON(http.StatusOK, response.FailedResponse())
+		return
+	}
+
+	response := utils.Response{
+		Status: 0,
+		Data:   nil,
+		Msg:    "操作成功",
+	}
+	c.JSON(http.StatusOK, response.SuccessResponse())
 }

@@ -79,6 +79,20 @@ $(document).ready(function() {
 		}, "json")
 	});
 
+	// 修改密码
+	$("#updatepassword").submit(function (event) {
+		event.preventDefault();
+		let data = $(this).serializeArray();
+		$.post("/user/update_pwd", data, function (response) {
+			if (response.status > 0) {
+				msg(response.msg, "error");
+				return;
+			}
+			msg("操作成功", "success", function () {
+				window.reload();
+			});
+		}, "json");
+	});
 	// 文档目录
 	let directory_content = $("#directory_content");
 	directory_content.find("a").on("click", function () {
@@ -86,9 +100,12 @@ $(document).ready(function() {
 	});
 	$("#directory").on("click",function (event) {
 		event.stopPropagation();
+		directory_content.css("display", "block");
 		directory_content.animate({width:"300px"}, 300, "swing", function () {});
 	});
 	$("body").click(function (event) {
-		$("#directory_content").animate({width:"0", display:"none"}, 300, "swing", function(){});
+		directory_content.animate({width:"0"}, 300, "swing", function(){
+			directory_content.css("display", "none");
+		});
 	});
 });

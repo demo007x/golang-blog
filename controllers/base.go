@@ -6,9 +6,9 @@ import (
 
 // session 中 auth
 type Auth struct {
-	Id         int
-	Name       string
-	Avatar     string
+	Id int
+	Name string
+	Avatar string
 	Profession string
 }
 
@@ -17,9 +17,9 @@ func (a Auth) GetAuth(c *gin.Context) Auth {
 	auth, exists := c.Get("auth")
 	if !exists {
 		auth = Auth{
-			Id:         0,
-			Name:       "",
-			Avatar:     "",
+			Id:     0,
+			Name:   "",
+			Avatar: "",
 			Profession: "",
 		}
 	}

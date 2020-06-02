@@ -4,12 +4,11 @@ import (
 	"blog/bootstrap/driver"
 	"blog/modules"
 	"fmt"
+	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
 	"strconv"
 	"strings"
-
-	"github.com/gin-gonic/gin"
 )
 
 // 归档
@@ -27,7 +26,7 @@ func Archives(c *gin.Context) {
 		for _, v := range archives {
 			// 查找文章
 			var ids []int
-			for _, id := range strings.Split(v.ArticleIds, ",") {
+			for _, id := range strings.Split( v.ArticleIds, ",") {
 				id, _ := strconv.Atoi(id)
 				ids = append(ids, id)
 			}
@@ -37,15 +36,15 @@ func Archives(c *gin.Context) {
 		}
 	}
 	for _, v := range Archives {
-		for _, item := range v {
+		for _, item :=  range v {
 			fmt.Printf("%#v", item)
 		}
 	}
-	header := Header{Title: "文章归档"}
+	header := Header{Title:"文章归档"}
 	data := struct {
 		Auth
 		Archives map[string]articleItems
-		Header   Header
+		Header Header
 	}{auth, Archives, header}
 	c.HTML(http.StatusOK, "archives", data)
 }

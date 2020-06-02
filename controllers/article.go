@@ -116,7 +116,7 @@ func SaveArticle(c *gin.Context) {
 	return
 }
 
-// 文章详情
+// Detail 文章详情
 func Detail(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	var article modules.Article
@@ -178,6 +178,7 @@ func DelArticle(c *gin.Context) {
 	}
 	// 查找词文章是否用户文章
 	err := driver.Db.Where("id = ? and user_id = ?", id, auth.Id).Find(&article).Error
+
 	if err != nil {
 		utils.RedirectBack(c)
 		// 。。。
@@ -185,7 +186,7 @@ func DelArticle(c *gin.Context) {
 	if article.ID == 0 {
 		utils.RedirectBack(c)
 	}
-	//err = driver.Db.Delete(&article).Error
+	err = driver.Db.Delete(&article).Error
 	if err != nil {
 		// session 中写入error
 		// 。。。
