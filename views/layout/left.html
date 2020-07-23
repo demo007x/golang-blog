@@ -18,7 +18,7 @@
                         </p>
                     {{else}}
                         {{$avatar := .Avatar}}
-                        <img class="profile-image mb-3 rounded-circle mx-auto" src="{{$avatar}}" alt="avatar">
+                        <img class="profile-image mb-3 mx-auto" src="{{$avatar}}" alt="avatar">
                         <div class="bio mb-3 font-weight-bold">{{.Name}}</div>
                         <div class="m-3 text-center">
                             {{.Profession}}
@@ -72,6 +72,12 @@
                         <button type="submit" class="btn btn-block btn-primary">订阅</button>
                     </div>
                 </form>
+                <hr style="background-color: #ffffff; width: 90%">
+                <ul class="navbar-nav flex-column text-left">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://kalasearch.cn"><i class="fa fa-link" aria-hidden="true"></i> 卡拉搜索</a>
+                    </li>
+                </ul>
             </div>
         </nav>
     </header>

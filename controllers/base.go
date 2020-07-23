@@ -19,7 +19,7 @@ func (a Auth) GetAuth(c *gin.Context) Auth {
 		auth = Auth{
 			Id:     0,
 			Name:   "",
-			Avatar: "",
+			Avatar: "/static/logoh.png",
 			Profession: "",
 		}
 	}
