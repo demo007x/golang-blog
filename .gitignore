@@ -1,4 +1,6 @@
 .idea
 go.sum
 .env
+.DS_Store
+*/.DS_Store
 /static/node_modules
