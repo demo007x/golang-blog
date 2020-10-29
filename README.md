@@ -91,7 +91,7 @@ GOGCCFLAGS="-fPIC -m64 -pthread -fno-caret-diagnostics -Qunused-arguments -fmess
 
 ```
 
-#### 启动项目
+#### 7、启动项目
 
 ```go
 go run main.go
@@ -99,7 +99,7 @@ go run main.go
 
 浏览器输入地址： [localhost:8888](localhost:8888)
 
-#### 新建账户：
+#### 8、新建账户：
 
 数据库默认没有账户， 可以访问：[localhost:8888/join](localhost:8888/join)
 
@@ -107,7 +107,7 @@ go run main.go
 - 输入用户邮箱
 - 输入用户密码
 
-#### 登录
+#### 9、登录
 
 [localhost:8888/login](localhost:8888/login)
 
