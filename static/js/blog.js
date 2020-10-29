@@ -59,6 +59,22 @@ $(document).ready(function() {
 		return false;
 	});
 
+	// join form
+	$("#form-join").submit(function(e){
+		e.preventDefault();
+		console.log(this);
+		let data = $(this).serializeArray();
+		$.post("/join", data, function (respoonse) {
+			if (respoonse.status > 0) {
+				msg(respoonse.msg, "error");
+				return;
+			}
+			window.location.href = "/";
+		}, 'json');
+
+		return false;
+	});
+
 	// article form
 	$("#form-create-article").submit(function (e) {
 		e.preventDefault();
